@@ -10,8 +10,9 @@ module.exports = merge(common, {
     minimize: true,
     minimizer: [
       new CssMinimizerPlugin(),
-      new TerserPlugin()
-    ]
+      new TerserPlugin(),
+    ],
+    removeEmptyChunks: true,
   },
   plugins: [
     new CleanWebpackPlugin(),

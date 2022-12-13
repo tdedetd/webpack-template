@@ -1,7 +1,7 @@
 const path = require('path');
-const CopyPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts');
 
 const FILE_LOADER = {
   loader: 'file-loader',
@@ -76,6 +76,7 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: '[name].[fullhash].css',
     }),
+    new RemoveEmptyScriptsPlugin(),
   ],
   optimization: {
     splitChunks: {
