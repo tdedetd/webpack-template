@@ -1,0 +1,11 @@
+@mixin render-font-size($px) {
+  @include render-font-size-interval($px, $px + 1);
+}
+
+@mixin render-font-size-interval($px-from, $px-to) {
+  @for $i from $px-from to $px-to {
+    .fs-#{$i} {
+      font-size: $i;
+    }
+  }
+}

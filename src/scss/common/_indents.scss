@@ -1,0 +1,79 @@
+.m-auto {
+  margin: 0 auto;
+}
+
+@mixin render-indents($px) {
+  @include render-indents-interval($px, $px + 1);
+}
+
+@mixin render-indents-interval($px-from, $px-to) {
+  @for $i from $px-from to $px-to {
+    .mt-#{$i} {
+      margin-top: $i;
+    }
+
+    .ml-#{$i} {
+      margin-left: $i;
+    }
+
+    .mr-#{$i} {
+      margin-right: $i;
+    }
+
+    .mb-#{$i} {
+      margin-bottom: $i;
+    }
+
+    .m-#{$i} {
+      margin: $i;
+    }
+
+    .mv-#{$i} {
+      margin: {
+        top: $i;
+        bottom: $i;
+      }
+    }
+
+    .mh-#{$i} {
+      margin: {
+        left: $i;
+        right: $i;
+      }
+    }
+
+    .pt-#{$i} {
+      padding-top: $i;
+    }
+
+    .pl-#{$i} {
+      padding-left: $i;
+    }
+
+    .pr-#{$i} {
+      padding-right: $i;
+    }
+
+    .pb-#{$i} {
+      padding-bottom: $i;
+    }
+
+    .p-#{$i} {
+      padding: $i;
+    }
+
+    .pv-#{$i} {
+      padding: {
+        top: $i;
+        bottom: $i;
+      }
+    }
+
+    .ph-#{$i} {
+      padding: {
+        left: $i;
+        right: $i;
+      }
+    }
+  }
+}
