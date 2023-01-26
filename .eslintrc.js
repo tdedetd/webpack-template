@@ -70,7 +70,6 @@ module.exports = {
     'semi': ['error', 'always'],
     'semi-spacing': ['error', { before: false, after: true }],
     'semi-style': ['error', 'last'],
-    'sort-keys': 'warn',
     'space-before-blocks': 'error',
     'space-before-function-paren': ['error', 'never'],
     'space-in-parens': ['error', 'never'],

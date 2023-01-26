@@ -79,6 +79,7 @@ module.exports = {
     new RemoveEmptyScriptsPlugin(),
   ],
   optimization: {
+    runtimeChunk: 'single',
     splitChunks: {
       chunks: 'all',
       name: 'shared'
