@@ -1,3 +1,9 @@
+# Versions #
+
+node - 16.15.0
+
+npm - 9.6.5
+
 # Get started #
 
 1. run `npm i`
