@@ -1,9 +1,4 @@
-@import "./indents";
-@import "./font-size";
-
-.display-flex {
-  display: flex;
-}
+@import './flex';
 
 .display-block {
   display: block;
@@ -11,22 +6,6 @@
 
 .display-inline-block {
   display: inline-block;
-}
-
-.justify-center {
-  justify-content: center;
-}
-
-.justify-around {
-  justify-content: space-around;
-}
-
-.justify-between {
-  justify-content: space-between;
-}
-
-.align-center {
-  align-items: center;
 }
 
 .text-left {
@@ -41,10 +20,10 @@
   text-align: right;
 }
 
-.uppercase {
-  text-transform: uppercase;
+.relative {
+  position: relative;
 }
 
-.font-weight-100 {
-  font-weight: 100;
+.uppercase {
+  text-transform: uppercase;
 }

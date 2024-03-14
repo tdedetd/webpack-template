@@ -1,0 +1,90 @@
+@mixin indent($px) {
+  @include indent-margin($px);
+  @include indend-padding($px);
+}
+
+@mixin indent-margin($px) {
+  .m-#{$px} {
+    margin: #{$px}px;
+  }
+
+  @include indent-margin-h($px);
+  @include indent-margin-v($px);
+}
+
+@mixin indent-margin-h($px) {
+  .ml-#{$px} {
+    margin-left: #{$px}px;
+  }
+
+  .mr-#{$px} {
+    margin-right: #{$px}px;
+  }
+
+  .mh-#{$px} {
+    margin: {
+      left: #{$px}px;
+      right: #{$px}px;
+    }
+  }
+}
+
+@mixin indent-margin-v($px) {
+  .mt-#{$px} {
+    margin-top: #{$px}px;
+  }
+
+  .mb-#{$px} {
+    margin-bottom: #{$px}px;
+  }
+
+  .mv-#{$px} {
+    margin: {
+      top: #{$px}px;
+      bottom: #{$px}px;
+    }
+  }
+}
+
+@mixin indend-padding($px) {
+  @include indend-padding-h($px);
+  @include indend-padding-v($px);
+
+  .p-#{$px} {
+    padding: #{$px}px;
+  }
+}
+
+@mixin indend-padding-h($px) {
+  .pl-#{$px} {
+    padding-left: #{$px}px;
+  }
+
+  .pr-#{$px} {
+    padding-right: #{$px}px;
+  }
+
+  .ph-#{$px} {
+    padding: {
+      left: #{$px}px;
+      right: #{$px}px;
+    }
+  }
+}
+
+@mixin indend-padding-v($px) {
+  .pt-#{$px} {
+    padding-top: #{$px}px;
+  }
+
+  .pb-#{$px} {
+    padding-bottom: #{$px}px;
+  }
+
+  .pv-#{$px} {
+    padding: {
+      top: #{$px}px;
+      bottom: #{$px}px;
+    }
+  }
+}
