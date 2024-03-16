@@ -1,0 +1,15 @@
+@use 'sass:map';
+
+@import './breakpoints';
+
+@mixin screen($size: '') {
+  $px: map.get($breakpoints, $size);
+
+  @if $px {
+    @media screen and (min-width: $px) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}

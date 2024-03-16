@@ -1,90 +1,120 @@
-@mixin indent($px) {
-  @include indent-margin($px);
-  @include indend-padding($px);
+@use 'sass:map';
+
+@import '../utils/screen';
+@import '../utils/if';
+@import '../utils/breakpoints';
+
+@mixin indent($px, $size: '') {
+  @include indent-margin($px, $size);
+  @include indend-padding($px, $size);
 }
 
-@mixin indent-margin($px) {
-  .m-#{$px} {
-    margin: #{$px}px;
+@mixin indent-margin($px, $size: '') {
+  $postfix: if($size != '', -#{$size}, '');
+
+  @include screen($size) {
+    .m#{$postfix}-#{$px} {
+      margin: #{$px}px;
+    }
   }
 
-  @include indent-margin-h($px);
-  @include indent-margin-v($px);
+  @include indent-margin-h($px, $size);
+  @include indent-margin-v($px, $size);
 }
 
-@mixin indent-margin-h($px) {
-  .ml-#{$px} {
-    margin-left: #{$px}px;
-  }
+@mixin indent-margin-h($px, $size: '') {
+  $postfix: if($size != '', -#{$size}, '');
 
-  .mr-#{$px} {
-    margin-right: #{$px}px;
-  }
+  @include screen($size) {
+    .ml#{$postfix}-#{$px} {
+      margin-left: #{$px}px;
+    }
 
-  .mh-#{$px} {
-    margin: {
-      left: #{$px}px;
-      right: #{$px}px;
+    .mr#{$postfix}-#{$px} {
+      margin-right: #{$px}px;
+    }
+
+    .mh#{$postfix}-#{$px} {
+      margin: {
+        left: #{$px}px;
+        right: #{$px}px;
+      }
     }
   }
 }
 
-@mixin indent-margin-v($px) {
-  .mt-#{$px} {
-    margin-top: #{$px}px;
-  }
+@mixin indent-margin-v($px, $size: '') {
+  $postfix: if($size != '', -#{$size}, '');
 
-  .mb-#{$px} {
-    margin-bottom: #{$px}px;
-  }
+  @include screen($size) {
+    .mt#{$postfix}-#{$px} {
+      margin-top: #{$px}px;
+    }
 
-  .mv-#{$px} {
-    margin: {
-      top: #{$px}px;
-      bottom: #{$px}px;
+    .mb#{$postfix}-#{$px} {
+      margin-bottom: #{$px}px;
+    }
+
+    .mv#{$postfix}-#{$px} {
+      margin: {
+        top: #{$px}px;
+        bottom: #{$px}px;
+      }
     }
   }
 }
 
-@mixin indend-padding($px) {
-  @include indend-padding-h($px);
-  @include indend-padding-v($px);
+@mixin indend-padding($px, $size: '') {
+  @include indend-padding-h($px, $size);
+  @include indend-padding-v($px, $size);
 
-  .p-#{$px} {
-    padding: #{$px}px;
-  }
-}
+  $postfix: if($size != '', -#{$size}, '');
 
-@mixin indend-padding-h($px) {
-  .pl-#{$px} {
-    padding-left: #{$px}px;
-  }
-
-  .pr-#{$px} {
-    padding-right: #{$px}px;
-  }
-
-  .ph-#{$px} {
-    padding: {
-      left: #{$px}px;
-      right: #{$px}px;
+  @include screen($size) {
+    .p#{$postfix}-#{$px} {
+      padding: #{$px}px;
     }
   }
 }
 
-@mixin indend-padding-v($px) {
-  .pt-#{$px} {
-    padding-top: #{$px}px;
-  }
+@mixin indend-padding-h($px, $size: '') {
+  $postfix: if($size != '', -#{$size}, '');
 
-  .pb-#{$px} {
-    padding-bottom: #{$px}px;
-  }
+  @include screen($size) {
+    .pl#{$postfix}-#{$px} {
+      padding-left: #{$px}px;
+    }
 
-  .pv-#{$px} {
-    padding: {
-      top: #{$px}px;
-      bottom: #{$px}px;
+    .pr#{$postfix}-#{$px} {
+      padding-right: #{$px}px;
+    }
+
+    .ph#{$postfix}-#{$px} {
+      padding: {
+        left: #{$px}px;
+        right: #{$px}px;
+      }
+    }
+  }
+}
+
+@mixin indend-padding-v($px, $size: '') {
+  $postfix: if($size != '', -#{$size}, '');
+
+  @include screen($size) {
+    .pt#{$postfix}-#{$px} {
+      padding-top: #{$px}px;
+    }
+
+    .pb#{$postfix}-#{$px} {
+      padding-bottom: #{$px}px;
+    }
+
+    .pv#{$postfix}-#{$px} {
+      padding: {
+        top: #{$px}px;
+        bottom: #{$px}px;
+      }
     }
   }
 }
