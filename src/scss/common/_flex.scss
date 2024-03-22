@@ -12,6 +12,10 @@
       display: flex;
     }
 
+    .flex-column#{$postfix} {
+      flex-direction: column;
+    }
+
     .justify-center#{$postfix} {
       justify-content: center;
     }
@@ -22,6 +26,10 @@
 
     .justify-between#{$postfix} {
       justify-content: space-between;
+    }
+
+    .justify-end#{$postfix} {
+      justify-content: flex-end;
     }
 
     .align-items-center#{$postfix} {
