@@ -1,6 +1,6 @@
 @use 'sass:map';
 
-@import './breakpoints';
+@import '../variables/breakpoints';
 
 @mixin screen($size: '') {
   $px: map.get($breakpoints, $size);
