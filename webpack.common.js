@@ -27,6 +27,31 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.(jpe?g|png|gif|webp)$/i,
+        use: {
+          loader: 'image-webpack-loader',
+          options: {
+            mozjpeg: {
+              progressive: true,
+              quality: 70
+            },
+            optipng: {
+              enabled: false,
+            },
+            pngquant: {
+              quality: [0.65, 0.90],
+              speed: 4
+            },
+            gifsicle: {
+              interlaced: false,
+            },
+            webp: {
+              quality: 75
+            }
+          }
+        }
+      },
+      {
         test: /\.ts$/,
         use: 'ts-loader',
         exclude: /node_modules/,
@@ -47,21 +72,6 @@ module.exports = {
       {
         test: /\.(eot|woff(2)?)$/,
         use: FILE_LOADER,
-      },
-      {
-        test: /\.jpg$/,
-        use: [
-          FILE_LOADER,
-          {
-            loader: 'image-webpack-loader',
-            options: {
-              mozjpeg: {
-                progressive: true,
-                quality: 70
-              }
-            }
-          }
-        ]
       },
       {
         test: /\.html$/,
