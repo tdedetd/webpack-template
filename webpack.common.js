@@ -3,13 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts');
 
-const FILE_LOADER = {
-  loader: 'file-loader',
-  options: {
-    name: '[name].[ext]',
-    outputPath: 'assets'
-  }
-};
+const isProduction = process.env.NODE_ENV === 'production';
 
 module.exports = {
   context: path.resolve(__dirname, 'src'),
@@ -26,6 +20,13 @@ module.exports = {
   },
   module: {
     rules: [
+      {
+        test: /\.(jpe?g|png|gif|webp|svg|ttf|eot|woff(2))$/i,
+        type: 'asset/resource',
+        generator: {
+          filename: isProduction ? '[hash][ext][query]' : '[path][name].[hash][ext][query]'
+        },
+      },
       {
         test: /\.(jpe?g|png|gif|webp)$/i,
         use: {
@@ -68,10 +69,6 @@ module.exports = {
           'css-loader',
           'sass-loader'
         ]
-      },
-      {
-        test: /\.(eot|woff(2)?)$/,
-        use: FILE_LOADER,
       },
       {
         test: /\.html$/,

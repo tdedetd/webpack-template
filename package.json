@@ -5,8 +5,8 @@
   "private": "true",
   "scripts": {
     "start": "webpack-dev-server --config webpack.dev.js",
-    "build": "npm run lint && webpack --config webpack.prod.js",
-    "build:only": "webpack --config webpack.prod.js",
+    "build": "npm run lint && npm run build:only",
+    "build:only": "NODE_ENV=production webpack --config webpack.prod.js",
     "lint": "npx eslint -c .eslintrc.js --ext .ts,.js src/",
     "lint:fix": "npx eslint --fix -c .eslintrc.js --ext .ts,.js src/"
   },
