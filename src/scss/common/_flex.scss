@@ -47,6 +47,10 @@
     .flex-grow-1#{$postfix} {
       flex-grow: 1;
     }
+
+    .flex-wrap#{$postfix} {
+      flex-wrap: wrap;
+    }
   }
 }
 

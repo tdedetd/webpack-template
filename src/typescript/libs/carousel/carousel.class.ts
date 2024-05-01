@@ -1,3 +1,4 @@
+import { endOfEvent } from '../../utils/end-of-event';
 import { CarouselError } from './errors/carousel-error';
 import { CarouselInitError } from './errors/carousel-init-error';
 import { CarouselConfig } from './models/carousel-config.interface';
@@ -24,6 +25,8 @@ export class Carousel<T extends HTMLElement> {
     }
     this.selectedIndex = config.items.selectedIndex ?? 0;
     this.selectItem(this.selectedIndex);
+
+    this.listenWindowResize();
   }
 
   public selectItem(selectedIndex: number, originalEvent?: Event): void {
@@ -46,16 +49,7 @@ export class Carousel<T extends HTMLElement> {
       });
     }
 
-    if (this.config.items.onSelectItem) {
-      for (let i = 0; i < this.items.length; i++) {
-        this.config.items.onSelectItem({
-          container: this.itemsContainer,
-          item: this.items[i],
-          originalEvent: originalEvent ?? null,
-          relativeIndex: i - selectedIndex,
-        });
-      }
-    }
+    this.callOnSelectItemCallbacks(originalEvent);
   }
 
   private initLayout(): void {
@@ -86,6 +80,19 @@ export class Carousel<T extends HTMLElement> {
     }
   }
 
+  private callOnSelectItemCallbacks(originalEvent?: Event): void {
+    if (this.config.items.onSelectItem) {
+      for (let i = 0; i < this.items.length; i++) {
+        this.config.items.onSelectItem({
+          container: this.itemsContainer,
+          item: this.items[i],
+          originalEvent: originalEvent ?? null,
+          relativeIndex: i - this.selectedIndex,
+        });
+      }
+    }
+  }
+
   private getItems(container: HTMLElement): T[] {
     return Array.from(container.children).filter(
       (element): element is T => element instanceof HTMLElement
@@ -98,5 +105,11 @@ export class Carousel<T extends HTMLElement> {
       throw new CarouselInitError(`No element with id = "${this.config.items.containerId}"`);
     }
     return container;
+  }
+
+  private listenWindowResize(): void {
+    endOfEvent(window, 'resize', 500, () => {
+      this.callOnSelectItemCallbacks();
+    });
   }
 }
