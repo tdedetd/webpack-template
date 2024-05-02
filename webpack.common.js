@@ -2,6 +2,8 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts');
+const glob = require('glob');
+const { PurgeCSSPlugin } = require('purgecss-webpack-plugin');
 
 const isProduction = process.env.NODE_ENV === 'production';
 
@@ -84,6 +86,9 @@ module.exports = {
       filename: '[name].[fullhash].css',
     }),
     new RemoveEmptyScriptsPlugin(),
+    new PurgeCSSPlugin({
+      paths: glob.sync(`${path.resolve(__dirname, 'src')}/**/*`, { nodir: true }),
+    }),
   ],
   optimization: {
     runtimeChunk: 'single',

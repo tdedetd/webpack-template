@@ -2,7 +2,7 @@
 
 @import '../utils/screen';
 @import '../utils/if';
-@import '../utils/breakpoints';
+@import '../variables/breakpoints';
 
 @mixin space($px, $size: '') {
   @include space-m($px, $size);
