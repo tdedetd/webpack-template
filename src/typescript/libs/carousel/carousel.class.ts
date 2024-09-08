@@ -1,4 +1,4 @@
-import { endOfEvent } from '../../utils/end-of-event';
+import { debounce } from '../../utils/debounce';
 import { CarouselError } from './errors/carousel-error';
 import { CarouselInitError } from './errors/carousel-init-error';
 import { CarouselConfig } from './models/carousel-config.interface';
@@ -108,7 +108,7 @@ export class Carousel<T extends HTMLElement> {
   }
 
   private listenWindowResize(): void {
-    endOfEvent(window, 'resize', 500, () => {
+    debounce(window, 'resize', 500, () => {
       this.callOnSelectItemCallbacks();
     });
   }

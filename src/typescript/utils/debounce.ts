@@ -1,18 +1,18 @@
-export function endOfEvent<EventName extends keyof HTMLElementEventMap>(
+export function debounce<EventName extends keyof HTMLElementEventMap>(
   target: HTMLElement,
   eventName: EventName,
   delay: number,
   callback: (event: HTMLElementEventMap[EventName]) => void
 ): void;
 
-export function endOfEvent<EventName extends keyof WindowEventMap>(
+export function debounce<EventName extends keyof WindowEventMap>(
   target: Window,
   eventName: EventName,
   delay: number,
   callback: (event: WindowEventMap[EventName]) => void
 ): void;
 
-export function endOfEvent(
+export function debounce(
   target: EventTarget,
   eventName: string,
   delay: number,
