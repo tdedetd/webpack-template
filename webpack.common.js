@@ -11,11 +11,11 @@ module.exports = {
   context: path.resolve(__dirname, 'src'),
   entry: {
     main: './typescript/index.ts',
-    styles: './scss/index.scss'
+    styles: './scss/index.scss',
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: '[name].[fullhash].js'
+    filename: '[name].[fullhash].js',
   },
   resolve: {
     extensions: ['.js', '.ts'],
@@ -26,7 +26,7 @@ module.exports = {
         test: /\.(jpe?g|png|gif|webp|svg|ttf|eot|woff(2))$/i,
         type: 'asset/resource',
         generator: {
-          filename: isProduction ? '[hash][ext][query]' : '[path][name].[hash][ext][query]'
+          filename: isProduction ? '[hash][ext][query]' : '[path][name].[hash][ext][query]',
         },
       },
       {
@@ -36,23 +36,23 @@ module.exports = {
           options: {
             mozjpeg: {
               progressive: true,
-              quality: 70
+              quality: 70,
             },
             optipng: {
               enabled: false,
             },
             pngquant: {
-              quality: [0.65, 0.90],
-              speed: 4
+              quality: [0.65, 0.9],
+              speed: 4,
             },
             gifsicle: {
               interlaced: false,
             },
             webp: {
-              quality: 75
-            }
-          }
-        }
+              quality: 75,
+            },
+          },
+        },
       },
       {
         test: /\.ts$/,
@@ -65,18 +65,18 @@ module.exports = {
           {
             loader: MiniCssExtractPlugin.loader,
             options: {
-              publicPath: '/'
-            }
+              publicPath: '/',
+            },
           },
           'css-loader',
-          'sass-loader'
-        ]
+          'sass-loader',
+        ],
       },
       {
         test: /\.html$/,
-        use: 'html-loader'
-      }
-    ]
+        use: 'html-loader',
+      },
+    ],
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -94,7 +94,7 @@ module.exports = {
     runtimeChunk: 'single',
     splitChunks: {
       chunks: 'all',
-      name: 'shared'
-    }
-  }
+      name: 'shared',
+    },
+  },
 };

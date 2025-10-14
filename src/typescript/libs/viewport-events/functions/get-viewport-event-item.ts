@@ -3,11 +3,12 @@ import { ViewportEventsConfigItem } from '../models/viewport-events-config-item.
 
 export function getViewportEventItem(configItem: ViewportEventsConfigItem): ViewportEventItem {
   const { action, classList, selector, delay, onEmptyElement, threshold, repeat } = configItem;
-  const newDelay = typeof delay === 'undefined'
-    ? (_: Element): number => 0
-    : typeof delay === 'number'
-      ? (_: Element): number => delay
-      : delay;
+  const newDelay =
+    typeof delay === 'undefined'
+      ? (_: Element): number => 0
+      : typeof delay === 'number'
+        ? (_: Element): number => delay
+        : delay;
 
   return {
     action,

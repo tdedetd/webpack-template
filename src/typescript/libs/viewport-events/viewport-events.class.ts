@@ -9,9 +9,11 @@ export class ViewportEvents {
   }
 
   private observeItems(config: ViewportEventsConfig): void {
-    config.map(item => getViewportEventItem(item)).forEach(item => {
-      this.observeItem(item);
-    });
+    config
+      .map((item) => getViewportEventItem(item))
+      .forEach((item) => {
+        this.observeItem(item);
+      });
   }
 
   private observeItem(eventItem: ViewportEventItem): void {
@@ -25,25 +27,28 @@ export class ViewportEvents {
       }
     }
 
-    const observer = new IntersectionObserver((entries: IntersectionObserverEntry[]) => {
-      entries
-        .filter(({ isIntersecting }) => isIntersecting)
-        .forEach(({ target }) => {
-          setTimeout(() => {
-            if (eventItem.action === 'add-class') {
-              target.classList.add(...eventItem.classList);
-            } else if (eventItem.action === 'remove-class') {
-              target.classList.remove(...eventItem.classList);
+    const observer = new IntersectionObserver(
+      (entries: IntersectionObserverEntry[]) => {
+        entries
+          .filter(({ isIntersecting }) => isIntersecting)
+          .forEach(({ target }) => {
+            setTimeout(() => {
+              if (eventItem.action === 'add-class') {
+                target.classList.add(...eventItem.classList);
+              } else if (eventItem.action === 'remove-class') {
+                target.classList.remove(...eventItem.classList);
+              }
+            }, eventItem.delay(target));
+
+            if (eventItem.repeat === 'once') {
+              observer.unobserve(target);
             }
-          }, eventItem.delay(target));
+          });
+      },
+      { threshold: eventItem.threshold },
+    );
 
-          if (eventItem.repeat === 'once') {
-            observer.unobserve(target);
-          }
-        });
-    }, { threshold: eventItem.threshold });
-
-    elements.forEach(element => {
+    elements.forEach((element) => {
       observer.observe(element);
     });
   }

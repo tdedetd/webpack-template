@@ -7,11 +7,11 @@ export interface CarouselConfig<T extends HTMLElement> {
     errorOnNotFound?: boolean;
     itemClass?: string;
     onItemChange?: (event: DotSelectedChangeChangeEvent) => void;
-  },
+  };
   items: {
     containerId: string;
     errorOnNoSuchIndex?: boolean;
     onSelectItem?: (event: SelectItemEvent<T>) => void;
     selectedIndex?: number;
-  },
+  };
 }

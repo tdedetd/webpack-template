@@ -17,9 +17,9 @@ export class Carousel<T extends HTMLElement> {
     this.initLayout();
 
     if (
-      (config.items.errorOnNoSuchIndex ?? true)
-      && typeof config.items.selectedIndex !== 'undefined'
-      && !this.items[config.items.selectedIndex]
+      (config.items.errorOnNoSuchIndex ?? true) &&
+      typeof config.items.selectedIndex !== 'undefined' &&
+      !this.items[config.items.selectedIndex]
     ) {
       throw new CarouselInitError(`No item with such index (${config.items.selectedIndex})`);
     }
@@ -94,9 +94,7 @@ export class Carousel<T extends HTMLElement> {
   }
 
   private getItems(container: HTMLElement): T[] {
-    return Array.from(container.children).filter(
-      (element): element is T => element instanceof HTMLElement
-    );
+    return Array.from(container.children).filter((element): element is T => element instanceof HTMLElement);
   }
 
   private getItemsContainer(): HTMLElement {
